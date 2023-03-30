@@ -130,7 +130,6 @@ export class PodcastParser {
       podcast.desc = this.metaOG(root, "property", "description");
       podcast.imageLink = this.metaOG(root, "property", "image");
     } else if (url.includes(HOSTS.spotify)) {
-      console.log("i'm in spotify")
       let showTitle = root.querySelector('[data-testid="showTitle"]')
         .nextElementSibling?.innerHTML || "showTitle";
       podcast.showTitle = showTitle

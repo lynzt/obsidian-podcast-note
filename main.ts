@@ -17,7 +17,6 @@ export default class PodcastNote extends Plugin {
   settings: PodcastNoteSettings;
 
   async onload() {
-    console.log("loading plugin PodcastNote");
     await this.loadSettings();
 
     this.addSettingTab(new PodcastNoteSettingTab(this.app, this));
