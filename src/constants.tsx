@@ -24,6 +24,7 @@ export const HOSTS = {
 
 export const DEFAULT_PODCAST: Podcast = {
   date: "",
+  showTitle: "showTitle",
   title: "Title not found",
   desc: "Description not found",
   imageLink: "",

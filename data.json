@@ -1,9 +1,10 @@
 {
   "podcastTemplate": "# {{Title}} \n![]({{ImageURL}})\n## Description: \n> {{Description}}\n\n## Notes:",
   "atCursor": false,
-  "fileName": "{{Date}} - Podcast Note",
-  "podcastService": "spotify",
+  "fileName": "🔊 {{Title}}",
   "folder": "",
+  "templatePath": "templates/🔊 podcast template",
+  "podcastService": "spotify",
   "newNote": false,
   "showImage": true,
   "showDesc": true

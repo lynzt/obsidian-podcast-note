@@ -13,6 +13,7 @@ export interface PodcastTextURL {
 }
 
 export interface Podcast {
+  showTitle: string;
   title: string;
   desc: string;
   imageLink: string;

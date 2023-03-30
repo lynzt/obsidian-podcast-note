@@ -39,6 +39,7 @@ export class PodcastParser {
   applyTemplate(podcast: Podcast): PodcastNote {
     podcast = this.sanitizePodcast(podcast);
     let content = this.template
+      .replace(/{{showTitle}}/g, podcast.showTitle)
       .replace(/{{Title}}/g, podcast.title)
       .replace(/{{ImageURL}}/g, podcast.imageLink)
       .replace(/{{Description}}/g, podcast.desc)
@@ -66,7 +67,7 @@ export class PodcastParser {
   async loadPodcast(root: Document, url: string): Promise<Podcast> {
     let podcast = DEFAULT_PODCAST;
     podcast.url = url;
-    podcast.date = moment().format("YYYY-MM-DD");
+    podcast.date = moment().format("YYYY-MM-DD-ddd");
 
     if (url.includes(HOSTS.apple)) {
       podcast.title = this.metaOG(root, "property", "title");
@@ -128,6 +129,16 @@ export class PodcastParser {
       podcast.title = this.metaOG(root, "property", "title");
       podcast.desc = this.metaOG(root, "property", "description");
       podcast.imageLink = this.metaOG(root, "property", "image");
+    } else if (url.includes(HOSTS.spotify)) {
+      console.log("i'm in spotify")
+      let showTitle = root.querySelector('[data-testid="showTitle"]')
+        .nextElementSibling?.innerHTML || "showTitle";
+      podcast.showTitle = showTitle
+      podcast.title = this.metaOG(root, "property", "title");
+      podcast.desc = this.metaOG(root, "property", "description");
+      podcast.imageLink = this.metaOG(root, "property", "image");
+      
+
     } else {
       podcast.title = this.metaOG(root, "property", "title");
       podcast.desc = this.metaOG(root, "property", "description");
